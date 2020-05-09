@@ -1,8 +1,0 @@
-{
-  "name": "react-crud",
-  "version": "1.0.0",
-  "description": "Table with CRUD actions",
-  "main": "index.js",
-  "author": "Janmay",
-  "license": "MIT"
-}

@@ -1,0 +1,28 @@
+{
+  "name": "@react-crud/antd",
+  "version": "1.0.0",
+  "description": "Antd table with CRUD actions",
+  "main": "index.js",
+  "author": "Janmay",
+  "license": "MIT",
+  "dependencies": {
+    "@formily/antd": "^1.1.2",
+    "@formily/antd-components": "^1.1.2",
+    "antd": "^4.1.4",
+    "axios": "^0.19.2"
+  },
+  "peerDependencies": {
+    "@formily/antd": "^1.1.2",
+    "@formily/antd-components": "^1.1.2",
+    "antd": "^4.1.4",
+    "axios": "^0.19.2",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
