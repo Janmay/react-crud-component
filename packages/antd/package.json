@@ -8,14 +8,12 @@
   "dependencies": {
     "@formily/antd": "^1.1.2",
     "@formily/antd-components": "^1.1.2",
-    "antd": "^4.1.4",
-    "axios": "^0.19.2"
+    "antd": "^4.1.4"
   },
   "peerDependencies": {
     "@formily/antd": "^1.1.2",
     "@formily/antd-components": "^1.1.2",
     "antd": "^4.1.4",
-    "axios": "^0.19.2",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },

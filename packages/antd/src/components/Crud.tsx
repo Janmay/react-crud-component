@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
-import axios from 'axios';
-import { ICrudProps } from '../types';
-import { AxiosRequestConfig } from 'axios';
+import { CrudActionServiceData, ICrudProps } from '../types';
 import { Key, SorterResult } from 'antd/es/table/interface';
 
 export function Crud<RecordType extends object = any>(
@@ -11,15 +9,30 @@ export function Crud<RecordType extends object = any>(
 	const {
 		dataSource,
 		onChange,
+		pagination: originPagination = {},
 		paramNames,
 		actions = {},
 		...restProps
 	} = props;
 
-	const { loading, data } = useTableData(formatRequestConfig(props));
+	const { loading, data, pagination } = useTableData(
+		actions.$get || '',
+		formatParams({
+			paramNames,
+			pagination: originPagination,
+		}),
+	);
 
 	return (
-		<Table loading={loading} dataSource={dataSource || data} {...restProps} />
+		<Table
+			loading={loading}
+			dataSource={dataSource || data}
+			pagination={{
+				...originPagination,
+				...pagination,
+			}}
+			{...restProps}
+		/>
 	);
 }
 
@@ -85,50 +98,26 @@ function formatParams({
 	return params;
 }
 
-function formatRequestConfig<T>(config: ICrudProps<T>) {
-	const { pagination, paramNames, actions } = config;
-
-	if (!actions['$get']) {
-		return {};
-	}
-	const requestConfig = actions['$get'].api;
-	if (!requestConfig.params) requestConfig.params = {};
-	if (pagination) {
-		const formattedParams = formatParams({
-			paramNames,
-			pagination,
-		});
-	}
-
-	return requestConfig;
-}
-
-function useTableData(config: AxiosRequestConfig = {}) {
+function useTableData(action, params: Record<string, any> = {}) {
+	const { service, cancel } = action;
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState([]);
+	const [pagination, setPagination] = useState<ICrudProps<any>['pagination']>({
+		current: 1,
+		pageSize: 10,
+	});
 
-	useEffect(() => {
-		const { fetchAPI, cancelFetch } = fetchData(config);
-		fetchAPI.then((res) => {
-			setData(res.data);
+	if (service) {
+		useEffect(() => {
+			service(params).then((res: CrudActionServiceData<any>) => {
+				setData(res.data);
+				setPagination(res.pagination);
+			});
+			return () => {
+				if (cancel) cancel();
+			};
 		});
-		return () => {
-			cancelFetch();
-		};
-	});
+	}
 
-	return { loading, data };
-}
-
-function fetchData(config: AxiosRequestConfig = {}) {
-	if (!config.url) return null;
-	let cancelFetch;
-	const fetchAPI = axios({
-		method: 'get',
-		...config,
-		cancelToken: new axios.CancelToken((c) => {
-			cancelFetch = c;
-		}),
-	});
-	return { fetchAPI, cancelFetch };
+	return { loading, data, pagination };
 }
