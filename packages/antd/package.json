@@ -5,10 +5,20 @@
   "main": "index.js",
   "author": "Janmay",
   "license": "MIT",
+  "scripts": {
+    "build": "../../scripts/build_package.sh",
+    "clean": "../../scripts/clean_package.sh"
+  },
   "dependencies": {
     "@formily/antd": "^1.1.2",
     "@formily/antd-components": "^1.1.2",
     "antd": "^4.1.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "peerDependencies": {
     "@formily/antd": "^1.1.2",
@@ -16,11 +26,5 @@
     "antd": "^4.1.4",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
   }
 }
