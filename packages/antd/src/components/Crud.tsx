@@ -98,8 +98,7 @@ function formatParams({
 	return params;
 }
 
-function useTableData(action, params: Record<string, any> = {}) {
-	const { service, cancel } = action;
+export function useTableData(action, params: Record<string, any> = {}) {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState([]);
 	const [pagination, setPagination] = useState<ICrudProps<any>['pagination']>({
@@ -107,17 +106,19 @@ function useTableData(action, params: Record<string, any> = {}) {
 		pageSize: 10,
 	});
 
-	if (service) {
-		useEffect(() => {
-			service(params).then((res: CrudActionServiceData<any>) => {
-				setData(res.data);
-				setPagination(res.pagination);
-			});
-			return () => {
-				if (cancel) cancel();
-			};
+	useEffect(() => {
+		const { service, cancel } = action;
+		if (!service) return;
+		setLoading(true);
+		service(params).then((res: CrudActionServiceData<any>) => {
+			setLoading(false);
+			setData(res.data);
+			setPagination(res.pagination);
 		});
-	}
+		return () => {
+			if (cancel) cancel();
+		};
+	}, [action, params]);
 
 	return { loading, data, pagination };
 }
