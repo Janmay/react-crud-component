@@ -11,6 +11,7 @@ module.exports = {
 	],
 	setupFilesAfterEnv: [
 		require.resolve('@testing-library/jest-dom/extend-expect'),
+		'<rootDir>/jest/setupTests.ts',
 	],
 	testMatch: [
 		'<rootDir>/packages/antd/src/**/__test__/**/?(*.)(spec|test).ts(x|)',

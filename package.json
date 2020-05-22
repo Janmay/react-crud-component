@@ -1,7 +1,9 @@
 {
   "name": "root",
   "private": true,
-  "description": "Table with CRUD actions",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "clean": "lerna run clean",
@@ -12,7 +14,15 @@
     "release:packages": "lerna publish",
     "start": "lerna run --parallel --stream start",
     "watch": "lerna run --parallel --stream watch",
-    "unit_test": "jest"
+    "unit_test": "jest",
+    "jest:watch": "jest --watch",
+    "jest:cov": "jest --coverage",
+    "test_modules": "lerna run test --stream",
+    "run_tests": "run-p test_modules jest:cov",
+    "test": "run-s clean run_tests"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -21,18 +31,17 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/runtime": "^7.9.6",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^10.0.4",
     "@testing-library/react-hooks": "^3.2.1",
-    "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.2",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
     "conventional-changelog-cli": "^2.0.31",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-config-react-app": "^5.2.1",
@@ -89,8 +98,5 @@
         }
       }
     ]
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.9.6"
   }
 }

@@ -2,7 +2,7 @@
   "name": "@react-crud/antd",
   "version": "1.0.0",
   "description": "Antd table with CRUD actions",
-  "main": "index.js",
+  "main": "lib",
   "author": "Janmay",
   "license": "MIT",
   "scripts": {
@@ -10,21 +10,19 @@
     "clean": "../../scripts/clean_package.sh"
   },
   "dependencies": {
-    "@formily/antd": "^1.1.2",
-    "@formily/antd-components": "^1.1.2",
-    "antd": "^4.1.4"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@formily/antd": "^1.1.3",
+    "@formily/antd-components": "^1.1.3",
+    "@types/react": "^16.9.35",
+    "antd": "^4.2.3",
+    "immer": "^6.0.5",
+    "@react-crud/core": "^0.0.0"
   },
   "peerDependencies": {
-    "@formily/antd": "^1.1.2",
-    "@formily/antd-components": "^1.1.2",
-    "antd": "^4.1.4",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "@formily/antd": "^1.1.3",
+    "@formily/antd-components": "^1.1.3",
+    "antd": "^4.2.3",
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

@@ -1,2 +1,5 @@
+.jest-cache
 node_modules
 /.idea
+/**/*/lib
+/**/*/dist

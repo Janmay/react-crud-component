@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 
-import { Crud, useTableData } from '../components/Crud';
+import Crud from '../components/Crud';
 
 /* eslint-disable @typescript-eslint/camelcase */
 describe('Crud', () => {
@@ -46,10 +46,9 @@ describe('Crud', () => {
 		},
 	};
 
-	it('allows fetch remote data', () => {
-		const result = useTableData(tableProps.actions.$get);
-	});
-	it('render remote data', () => {
-		render(<Crud {...tableProps} />);
+	it('render remote data', async () => {
+		await act(async () => {
+			render(<Crud {...tableProps} />);
+		});
 	});
 });

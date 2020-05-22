@@ -1,0 +1,29 @@
+{
+  "name": "@react-crud/core",
+  "version": "0.0.0",
+  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "keywords": [],
+  "author": "Janmay",
+  "license": "ISC",
+  "main": "lib",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Janmay/react-crud-component.git"
+  },
+  "scripts": {
+    "build": "../../scripts/build_package.sh",
+    "clean": "../../scripts/clean_package.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/Janmay/react-crud-component/issues"
+  },
+  "homepage": "https://github.com/Janmay/react-crud-component#readme",
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "lodash": "^4.17.15"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {}
+}
