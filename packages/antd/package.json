@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Antd table with CRUD actions",
   "main": "lib",
+  "module": "esm",
   "author": "Janmay",
   "license": "MIT",
   "scripts": {

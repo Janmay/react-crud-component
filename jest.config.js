@@ -3,6 +3,9 @@ module.exports = {
 	cacheDirectory: '.jest-cache',
 	testEnvironment: 'jsdom',
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+	moduleNameMapper: {
+		'@react-crud/core': '@react-crud/core/dist/cjs',
+	},
 	collectCoverageFrom: [
 		'packages/**/*.{ts,tsx}',
 		'!**/node_modules/**',
@@ -19,6 +22,7 @@ module.exports = {
 	transform: {
 		'^.+\\.(ts|tsx)$': 'ts-jest',
 	},
+	transformIgnorePatterns: ['<rootDir>/(node_modules)/'],
 	preset: 'ts-jest',
 	globals: {
 		'ts-jest': {
