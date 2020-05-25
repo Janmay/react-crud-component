@@ -25,6 +25,7 @@ describe('Crud', () => {
 	};
 
 	const tableProps = {
+		rowKey: 'id',
 		columns: [
 			{
 				dataIndex: 'id',
@@ -41,14 +42,21 @@ describe('Crud', () => {
 		],
 		actions: {
 			$get: {
-				service: () => Promise.resolve(resp.data),
+				service: () =>
+					Promise.resolve({
+						data: resp.data.records,
+						pagination: resp.data.pagination,
+					}),
 			},
 		},
 	};
 
 	it('render remote data', async () => {
+		let renderResult = null;
 		await act(async () => {
-			render(<Crud {...tableProps} />);
+			renderResult = render(<Crud {...tableProps} />);
 		});
+		const { asFragment } = renderResult;
+		expect(asFragment()).toMatchSnapshot();
 	});
 });

@@ -1,6 +1,5 @@
-import { useEffect, useState, useReducer } from 'react';
-import isEqual from 'lodash/isEqual';
-import { usePrevious } from './usePrevious';
+import { useEffect, useReducer } from 'react';
+import { useDeepCompareMemoize } from './useDeepCompareMemoize';
 import { CrudActionServiceData } from '../types';
 
 const initialState = {
@@ -64,14 +63,13 @@ export function useTableData(action, params: Record<string, any> = {}) {
 	const [state, dispatch] = useReducer(dataReducer, initialState);
 	const { loading, data, pagination } = state;
 
-	const previousAction = usePrevious(action);
-	const previousParams = usePrevious(params);
-	const isChanged =
-		!isEqual(action, previousAction) || !isEqual(params, previousParams);
+	// const previousAction = usePrevious(action);
+	// const previousParams = usePrevious(params);
+	// const isChanged = !isEqual(action, previousAction) || !isEqual(params, previousParams);
 
 	const { service, cancel } = action;
 	useEffect(() => {
-		if (!isChanged) return;
+		// if (!isChanged) return;
 		let unmounted = false;
 
 		dispatch(['fetchRequest', '']);
@@ -87,7 +85,7 @@ export function useTableData(action, params: Record<string, any> = {}) {
 			unmounted = true;
 			if (cancel) cancel();
 		};
-	}, [params]);
+	}, useDeepCompareMemoize([service, cancel, params]));
 
 	return { loading, data, pagination };
 }

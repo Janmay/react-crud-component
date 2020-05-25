@@ -1,4 +1,4 @@
-export * from './hooks/usePrevious';
+export * from './hooks/useDeepCompareMemoize';
 export * from './hooks/useTableData';
 
 export * from './shared';
